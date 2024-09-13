@@ -1,0 +1,6 @@
+@AccessOperationTeam_HostAddress = http://localhost:5076
+
+GET {{AccessOperationTeam_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
