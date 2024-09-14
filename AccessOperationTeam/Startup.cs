@@ -1,13 +1,8 @@
 ﻿using AccessOperationTeam.Infrastructure.DatabaseContext;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
+using ECommerceSkinet.Core.Interfaces;
+using ECommerceSkinet.Infrastructure.Data;
 
 namespace ECommerceSkinet.WebAPI
 {
@@ -34,6 +29,7 @@ namespace ECommerceSkinet.WebAPI
             //Enable Swagger
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
+            services.AddScoped<IProductRepository, ProductRepository>();
 
         }
 
