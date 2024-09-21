@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
 using ECommerceSkinet.Core.Interfaces;
 using ECommerceSkinet.Infrastructure.Data;
+using ECommerceSkinet.Core.Helpers;
 
 namespace ECommerceSkinet.WebAPI
 {
@@ -31,7 +32,7 @@ namespace ECommerceSkinet.WebAPI
             services.AddSwaggerGen();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
-
+            services.AddAutoMapper(typeof(MappingProfiles));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -47,7 +48,6 @@ namespace ECommerceSkinet.WebAPI
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
             app.UseSwagger();
             app.UseSwaggerUI(options =>
             {
@@ -55,6 +55,7 @@ namespace ECommerceSkinet.WebAPI
                 options.SwaggerEndpoint("/swagger/v2/swagger.json", "2.0");
             });
             app.UseRouting();
+            app.UseStaticFiles();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

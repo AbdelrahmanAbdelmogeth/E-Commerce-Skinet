@@ -6,6 +6,8 @@ using ECommerceSkinet.Core.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using ECommerceSkinet.Core.DTO;
+using AutoMapper;
 
 namespace ECommerceSkinet.WebAPI.Controllers.v1
 {
@@ -13,40 +15,45 @@ namespace ECommerceSkinet.WebAPI.Controllers.v1
     [ApiVersion("1.0")]
     public class ProductController : CustomControllerBase
     {
-        public IGenericRepository<Product> _productsRepo;
+        private readonly IGenericRepository<Product> _productsRepo;
+        private readonly IGenericRepository<ProductBrand> _productBrandRepo;
         private readonly IGenericRepository<ProductType> _productTypeRepo;
-        public IGenericRepository<ProductBrand> _productBrandRepo { get; }
+        private readonly IMapper _mapper;
 
         public ProductController(IGenericRepository<Product> productsRepo,
             IGenericRepository<ProductBrand> productBrandRepo,
-            IGenericRepository<ProductType> productTypeRepo) {
+            IGenericRepository<ProductType> productTypeRepo,
+            IMapper mapper) {
             _productsRepo = productsRepo;
             _productBrandRepo = productBrandRepo;
             _productTypeRepo = productTypeRepo;
+            _mapper = mapper;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<List<Product>>> GetProducts() {
-            var spec = new ProductsWithTypesAndBrandsSpecification();
-
-            var products = await _productsRepo.ListAsync(spec);
-            if (products != null && products.Count != 0)
-                return Ok(products);
-            else
-                return BadRequest("No Products Available");
-        }
-
-        [HttpGet("{id}")] 
-        public async Task<ActionResult<List<Product>>> GetProduct(int id) 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ProductToReturnDto>> GetProduct(int id)
         {
             var spec = new ProductsWithTypesAndBrandsSpecification(id);
 
             var product = await _productsRepo.GetEntityWithSpec(spec);
             if (product != null)
-                return Ok(product);
+                return Ok(_mapper.Map<Product, ProductToReturnDto>(product));
             else
                 return BadRequest("No product available with the given id");
         }
+
+        [HttpGet]
+        public async Task<ActionResult<IReadOnlyList<ProductToReturnDto>>> GetProducts() {
+            var spec = new ProductsWithTypesAndBrandsSpecification();
+
+            var products = await _productsRepo.ListAsync(spec);
+            if (products != null && products.Count != 0)
+                return Ok(_mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(products));
+            else
+                return BadRequest("No Products Available");
+        }
+
+        
 
         [HttpGet("brands")]
         public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProductBrands()
