@@ -30,6 +30,7 @@ namespace ECommerceSkinet.WebAPI
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
 
         }
 
