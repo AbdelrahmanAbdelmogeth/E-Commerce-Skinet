@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using ECommerceSkinet.Core.DTO;
 using AutoMapper;
 using ECommerceSkinet.WebAPI.Errors;
+using ECommerceSkinet.Core.Helpers;
 
 namespace ECommerceSkinet.WebAPI.Controllers.v1
 {
@@ -46,18 +47,26 @@ namespace ECommerceSkinet.WebAPI.Controllers.v1
         }
 
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<ProductToReturnDto>>> GetProducts() {
-            var spec = new ProductsWithTypesAndBrandsSpecification();
-
+        public async Task<ActionResult<Pagination<ProductToReturnDto>>> GetProducts(
+            [FromQuery] ProductSpecParams productParams) 
+        {
+            var spec = new ProductsWithTypesAndBrandsSpecification(productParams);
+            var countSpec = new ProductWithFiltersForCountSpecification(productParams);
+            var totalItems = await _productsRepo.CountAsync(countSpec);
             var products = await _productsRepo.ListAsync(spec);
+
             if (products != null && products.Count != 0)
-                return Ok(_mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(products));
+            {
+                var data = _mapper
+                    .Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(products);
+                return Ok(new Pagination<ProductToReturnDto>(productParams.PageIndex,
+                    productParams.PageSize, totalItems ,data));
+            }
             else
-                return BadRequest("No Products Available");
+                return new ObjectResult(new ApiResponse(404));
         }
 
         
-
         [HttpGet("brands")]
         public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProductBrands()
         {

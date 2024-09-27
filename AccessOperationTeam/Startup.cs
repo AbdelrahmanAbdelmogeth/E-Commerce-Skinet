@@ -30,7 +30,14 @@ namespace ECommerceSkinet.WebAPI
             });
             services.AddApplicationServices();
             //Enable Swagger
-            services.AddSwaggerDocumentation(); 
+            services.AddSwaggerDocumentation();
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy("CorsPolicy", policy =>
+                {
+                    policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200");
+                });
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -53,6 +60,7 @@ namespace ECommerceSkinet.WebAPI
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseStaticFiles();
+            app.UseCors("CorsPolicy");
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
