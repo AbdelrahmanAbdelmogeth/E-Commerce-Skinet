@@ -1,9 +1,9 @@
 ﻿using AccessOperationTeam.Infrastructure.DatabaseContext;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
-using ECommerceSkinet.Core.Interfaces;
-using ECommerceSkinet.Infrastructure.Data;
 using ECommerceSkinet.Core.Helpers;
+using ECommerceSkinet.WebAPI.Middleware;
+using ECommerceSkinet.WebAPI.Extensions;
 
 namespace ECommerceSkinet.WebAPI
 {
@@ -18,6 +18,7 @@ namespace ECommerceSkinet.WebAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(MappingProfiles));
             services.AddControllers().AddXmlSerializerFormatters();
             services.AddApiVersioning(config =>
             {
@@ -27,19 +28,19 @@ namespace ECommerceSkinet.WebAPI
             {
                 options.UseSqlServer(_configuration.GetConnectionString("default"));
             });
+            services.AddApplicationServices();
             //Enable Swagger
-            services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen();
-            services.AddScoped<IProductRepository, ProductRepository>();
-            services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
-            services.AddAutoMapper(typeof(MappingProfiles));
+            services.AddSwaggerDocumentation(); 
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // exception handler middleware
+            app.UseMiddleware<ExceptionMiddleware>();
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                //app.UseDeveloperExceptionPage();
+                app.UseSwaggerDocumentation();
             }
             else
             {
@@ -47,13 +48,9 @@ namespace ECommerceSkinet.WebAPI
                 app.UseHsts();
             }
 
+            app.UseStatusCodePagesWithReExecute("/errors/{0}"); 
+
             app.UseHttpsRedirection();
-            app.UseSwagger();
-            app.UseSwaggerUI(options =>
-            {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "1.0");
-                options.SwaggerEndpoint("/swagger/v2/swagger.json", "2.0");
-            });
             app.UseRouting();
             app.UseStaticFiles();
             app.UseAuthorization();

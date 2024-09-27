@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace AccessOperationTeam.WebAPI.Controllers
 {
@@ -7,5 +6,6 @@ namespace AccessOperationTeam.WebAPI.Controllers
     [ApiController]
     public class CustomControllerBase : ControllerBase
     {
+
     }
 }

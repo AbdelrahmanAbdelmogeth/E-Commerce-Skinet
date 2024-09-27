@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ECommerceSkinet.Core.DTO;
 using AutoMapper;
+using ECommerceSkinet.WebAPI.Errors;
 
 namespace ECommerceSkinet.WebAPI.Controllers.v1
 {
@@ -31,6 +32,8 @@ namespace ECommerceSkinet.WebAPI.Controllers.v1
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
         public async Task<ActionResult<ProductToReturnDto>> GetProduct(int id)
         {
             var spec = new ProductsWithTypesAndBrandsSpecification(id);
@@ -39,7 +42,7 @@ namespace ECommerceSkinet.WebAPI.Controllers.v1
             if (product != null)
                 return Ok(_mapper.Map<Product, ProductToReturnDto>(product));
             else
-                return BadRequest("No product available with the given id");
+                return new ObjectResult(new ApiResponse(404));
         }
 
         [HttpGet]
