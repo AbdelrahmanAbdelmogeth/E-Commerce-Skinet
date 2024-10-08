@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AccessOperationTeam.Core\E-Commerce-Skinet.Core.csproj" />
+    <ProjectReference Include="..\SkiNet.Core\E-Commerce-Skinet.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -24,8 +24,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AccessOperationTeam.Core\E-Commerce-Skinet.Core.csproj" />
-    <ProjectReference Include="..\AccessOperationTeam.Infrastructure\E-Commerce-Skinet.Infrastructure.csproj" />
+    <ProjectReference Include="..\SkiNet.Core\E-Commerce-Skinet.Core.csproj" />
+    <ProjectReference Include="..\SkiNet.Infrastructure\E-Commerce-Skinet.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
