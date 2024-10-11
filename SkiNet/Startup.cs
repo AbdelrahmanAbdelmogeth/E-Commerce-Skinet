@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using ECommerceSkinet.Core.Helpers;
 using ECommerceSkinet.WebAPI.Middleware;
 using ECommerceSkinet.WebAPI.Extensions;
+using StackExchange.Redis;
 
 namespace ECommerceSkinet.WebAPI
 {
@@ -28,6 +29,13 @@ namespace ECommerceSkinet.WebAPI
             {
                 options.UseSqlServer(_configuration.GetConnectionString("default"));
             });
+            services.AddSingleton<IConnectionMultiplexer>(c =>
+            {
+                var configuration = ConfigurationOptions.Parse(_configuration.
+                    GetConnectionString("Redis"), true);
+                return ConnectionMultiplexer.Connect(configuration);
+            });
+
             services.AddApplicationServices();
             //Enable Swagger
             services.AddSwaggerDocumentation();
