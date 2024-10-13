@@ -1,6 +1,6 @@
-﻿using AccessOperationTeam.Infrastructure.DatabaseContext;
+﻿using ECommerceSkinet.Infrastructure.DatabaseContext;
 using ECommerceSkinet.Core.Specifications;
-using AccessOperationTeam.WebAPI.Controllers;
+using ECommerceSkinet.WebAPI.Controllers;
 using ECommerceSkinet.Core.Entities;
 using ECommerceSkinet.Core.Interfaces;
 using Microsoft.AspNetCore.Authorization;

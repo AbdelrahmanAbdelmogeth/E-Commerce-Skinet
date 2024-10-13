@@ -1,4 +1,5 @@
 ﻿using ECommerceSkinet.Core.Interfaces;
+using ECommerceSkinet.Core.Services;
 using ECommerceSkinet.Infrastructure.Data;
 using ECommerceSkinet.WebAPI.Errors;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +10,7 @@ namespace ECommerceSkinet.WebAPI.Extensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
+            services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IBasketRepository, BasketRepository>();
             services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));

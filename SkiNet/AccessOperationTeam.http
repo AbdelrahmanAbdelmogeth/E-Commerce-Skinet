@@ -1,6 +1,6 @@
-@AccessOperationTeam_HostAddress = http://localhost:5076
+@SkiNet_HostAddress = http://localhost:5076
 
-GET {{AccessOperationTeam_HostAddress}}/weatherforecast/
+GET {{SkiNet_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###

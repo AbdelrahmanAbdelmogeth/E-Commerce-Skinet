@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
-namespace AccessOperationTeam.Infrastructure.DatabaseContext
+namespace ECommerceSkinet.Infrastructure.DatabaseContext
 {
     public class ApplicationDbContext : DbContext { 
         public ApplicationDbContext() { }

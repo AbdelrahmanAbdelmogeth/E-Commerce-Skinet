@@ -1,10 +1,11 @@
-﻿using AccessOperationTeam.Infrastructure.DatabaseContext;
+﻿using ECommerceSkinet.Infrastructure.DatabaseContext;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
 using ECommerceSkinet.Core.Helpers;
 using ECommerceSkinet.WebAPI.Middleware;
 using ECommerceSkinet.WebAPI.Extensions;
 using StackExchange.Redis;
+using ECommerceSkinet.Infrastructure.Identity;
 
 namespace ECommerceSkinet.WebAPI
 {
@@ -29,6 +30,10 @@ namespace ECommerceSkinet.WebAPI
             {
                 options.UseSqlServer(_configuration.GetConnectionString("default"));
             });
+            services.AddDbContext<AppIdentityDbContext>(options => {
+                options.UseSqlServer(_configuration.GetConnectionString("IdentityConnection"));
+            });
+
             services.AddSingleton<IConnectionMultiplexer>(c =>
             {
                 var configuration = ConfigurationOptions.Parse(_configuration.
@@ -37,6 +42,7 @@ namespace ECommerceSkinet.WebAPI
             });
 
             services.AddApplicationServices();
+            services.AddIdentityServices(_configuration);
             //Enable Swagger
             services.AddSwaggerDocumentation();
             services.AddCors(opt =>
@@ -69,6 +75,7 @@ namespace ECommerceSkinet.WebAPI
             app.UseRouting();
             app.UseStaticFiles();
             app.UseCors("CorsPolicy");
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

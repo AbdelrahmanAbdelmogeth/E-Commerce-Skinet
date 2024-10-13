@@ -1,4 +1,4 @@
-﻿using AccessOperationTeam.Infrastructure.DatabaseContext;
+﻿using ECommerceSkinet.Infrastructure.DatabaseContext;
 using ECommerceSkinet.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -15,7 +15,7 @@ namespace ECommerceSkinet.Infrastructure.Data
                 if(!context.ProductBrands.Any())
                 {
                     var basePath = AppDomain.CurrentDomain.BaseDirectory;
-                    var relativePath = @"..\..\..\..\AccessOperationTeam.Infrastructure\Data\SeedData\brands.json";
+                    var relativePath = @"..\..\..\..\SkiNetAPI.Infrastructure\Data\SeedData\brands.json";
                     var fullPath = Path.Combine(basePath, relativePath);
                     var brandsData = File.ReadAllText(fullPath);
 
@@ -39,7 +39,7 @@ namespace ECommerceSkinet.Infrastructure.Data
                 if (!context.ProductTypes.Any())
                 {
                     var basePath = AppDomain.CurrentDomain.BaseDirectory;
-                    var relativePath = @"..\..\..\..\AccessOperationTeam.Infrastructure\Data\SeedData\types.json";
+                    var relativePath = @"..\..\..\..\SkiNetAPI.Infrastructure\Data\SeedData\types.json";
                     var fullPath = Path.Combine(basePath, relativePath);
                     var typesData = File.ReadAllText(fullPath);
 
@@ -62,7 +62,7 @@ namespace ECommerceSkinet.Infrastructure.Data
                 if (!context.Products.Any())
                 {
                     var basePath = AppDomain.CurrentDomain.BaseDirectory;
-                    var relativePath = @"..\..\..\..\AccessOperationTeam.Infrastructure\Data\SeedData\products.json";
+                    var relativePath = @"..\..\..\..\SkiNetAPI.Infrastructure\Data\SeedData\products.json";
                     var fullPath = Path.Combine(basePath, relativePath);
                     var productsData = File.ReadAllText(fullPath);
 

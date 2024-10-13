@@ -1,4 +1,4 @@
-﻿using AccessOperationTeam.Infrastructure.DatabaseContext;
+﻿using ECommerceSkinet.Infrastructure.DatabaseContext;
 using ECommerceSkinet.Core.Entities;
 using ECommerceSkinet.Core.Interfaces;
 using ECommerceSkinet.Core.Specifications;

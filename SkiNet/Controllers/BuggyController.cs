@@ -1,9 +1,11 @@
-﻿using AccessOperationTeam.Infrastructure.DatabaseContext;
+﻿using ECommerceSkinet.Infrastructure.DatabaseContext;
 using ECommerceSkinet.WebAPI.Errors;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Controllers.v1
+namespace Controllers
 {
+    [Route("/api/buggy/")]
     public class BuggyController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -12,6 +14,14 @@ namespace Controllers.v1
         {
             _context = context;
         }
+
+        [HttpGet("testauth")]
+        [Authorize]
+        public ActionResult<string> GetSecretText()
+        {
+            return "secret stuff";
+        }
+
 
         [HttpGet("notfound")]
         public ActionResult GetNotFoundRequest()
