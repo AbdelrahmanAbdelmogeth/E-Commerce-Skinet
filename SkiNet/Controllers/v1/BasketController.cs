@@ -3,6 +3,8 @@ using ECommerceSkinet.Core.Entities;
 using ECommerceSkinet.Core.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ECommerceSkinet.Core.DTO;
+using AutoMapper;
 
 namespace Controllers.v1
 {
@@ -11,10 +13,12 @@ namespace Controllers.v1
     public class BasketController : CustomControllerBase
     {
         private readonly IBasketRepository _basketRepository;
+        private readonly IMapper _mapper;
 
-        public BasketController(IBasketRepository basketRepository)
+        public BasketController(IBasketRepository basketRepository, IMapper mapper)
         {
             _basketRepository = basketRepository;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -25,9 +29,10 @@ namespace Controllers.v1
         }
 
         [HttpPost]
-        public async Task<ActionResult<CustomerBasket>> UpdateBasket(CustomerBasket basket)
+        public async Task<ActionResult<CustomerBasket>> UpdateBasket(CustomerBasketDto basket)
         {
-            CustomerBasket udpatedBasket = await _basketRepository.UpdateBasketAsync(basket);
+            CustomerBasket customerBasket = _mapper.Map<CustomerBasketDto, CustomerBasket>(basket);
+            CustomerBasket udpatedBasket = await _basketRepository.UpdateBasketAsync(customerBasket);
             return Ok(udpatedBasket);
         }
 
