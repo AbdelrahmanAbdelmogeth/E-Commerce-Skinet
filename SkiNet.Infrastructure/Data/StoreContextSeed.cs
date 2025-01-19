@@ -3,6 +3,7 @@ using ECommerceSkinet.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.Text.Json;
+using ECommerceSkinet.Core.Entities.OrderAggregate;
 
 namespace ECommerceSkinet.Infrastructure.Data
 {
@@ -16,8 +17,9 @@ namespace ECommerceSkinet.Infrastructure.Data
                 {
                     var basePath = AppDomain.CurrentDomain.BaseDirectory;
                     var relativePath = @"..\..\..\..\SkiNetAPI.Infrastructure\Data\SeedData\brands.json";
+                    var absolutePath = @"H:\WEB Development\E-Commerce Angular_.Net Core\SkiNet API\SkiNet API\SkiNet.Infrastructure\Data\SeedData\brands.json";
                     var fullPath = Path.Combine(basePath, relativePath);
-                    var brandsData = File.ReadAllText(fullPath);
+                    var brandsData = File.ReadAllText(absolutePath);
 
                     var brands = JsonSerializer.Deserialize<List<ProductBrand>>(brandsData);
                     context.Database.OpenConnection();
@@ -41,7 +43,8 @@ namespace ECommerceSkinet.Infrastructure.Data
                     var basePath = AppDomain.CurrentDomain.BaseDirectory;
                     var relativePath = @"..\..\..\..\SkiNetAPI.Infrastructure\Data\SeedData\types.json";
                     var fullPath = Path.Combine(basePath, relativePath);
-                    var typesData = File.ReadAllText(fullPath);
+                    var absolutePath = @"H:\WEB Development\E-Commerce Angular_.Net Core\SkiNet API\SkiNet API\SkiNet.Infrastructure\Data\SeedData\types.json";
+                    var typesData = File.ReadAllText(absolutePath);
 
                     var types = JsonSerializer.Deserialize<List<ProductType>>(typesData);
                     context.Database.OpenConnection();
@@ -62,13 +65,30 @@ namespace ECommerceSkinet.Infrastructure.Data
                 if (!context.Products.Any())
                 {
                     var basePath = AppDomain.CurrentDomain.BaseDirectory;
-                    var relativePath = @"..\..\..\..\SkiNetAPI.Infrastructure\Data\SeedData\products.json";
+                    var relativePath = @"..\..\..\..\SkiNet.Infrastructure\Data\SeedData\products.json";
+                
                     var fullPath = Path.Combine(basePath, relativePath);
-                    var productsData = File.ReadAllText(fullPath);
+                    var absolutePath = @"H:\WEB Development\E-Commerce Angular_.Net Core\SkiNet API\SkiNet API\SkiNet.Infrastructure\Data\SeedData\products.json";
+                    var productsData = File.ReadAllText(absolutePath);
 
                     var products = JsonSerializer.Deserialize<List<Product>>(productsData);
                     foreach (var item in products)
                         context.Products.Add(item);
+                    await context.SaveChangesAsync();
+                }
+
+                if (!context.DeliveryMethods.Any())
+                {
+                    var basePath = AppDomain.CurrentDomain.BaseDirectory;
+                    var relativePath = @"..\..\..\SkiNet.Infrastructure\Data\SeedData\delivery.json";
+
+                    var fullPath = Path.Combine(basePath, relativePath);
+                    var absolutePath = @"H:\WEB Development\E-Commerce Angular_.Net Core\SkiNet API\SkiNet API\SkiNet.Infrastructure\Data\SeedData\delivery.json";
+                    var dmData = File.ReadAllText(absolutePath);
+
+                    var dmMothods = JsonSerializer.Deserialize<List<DeliveryMethod>>(dmData);
+                    foreach (var item in dmMothods)
+                        context.DeliveryMethods.Add(item);
                     await context.SaveChangesAsync();
                 }
             }

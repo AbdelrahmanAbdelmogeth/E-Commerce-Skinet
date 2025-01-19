@@ -1,5 +1,5 @@
-﻿using ECommerceSkinet.Core.Identity;
-using ECommerceSkinet.Core.Interfaces;
+﻿using ECommerceSkinet.Core.Interfaces;
+using ECommerceSkinet.Core.Entities.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;

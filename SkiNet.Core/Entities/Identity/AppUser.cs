@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.Net.Sockets;
 
-namespace ECommerceSkinet.Core.Identity
+namespace ECommerceSkinet.Core.Entities.Identity
 {
     public class AppUser : IdentityUser
     {
@@ -11,4 +11,3 @@ namespace ECommerceSkinet.Core.Identity
         public DateTime RefreshTokenExpirationDateTime { get; set; }
     }
 }
- 

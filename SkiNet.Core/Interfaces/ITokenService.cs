@@ -1,4 +1,4 @@
-﻿using ECommerceSkinet.Core.Identity;
+﻿using ECommerceSkinet.Core.Entities.Identity;
 
 
 namespace ECommerceSkinet.Core.Interfaces

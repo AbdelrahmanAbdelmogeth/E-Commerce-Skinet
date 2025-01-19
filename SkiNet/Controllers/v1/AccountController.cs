@@ -1,5 +1,4 @@
-﻿using ECommerceSkinet.Core.Identity;
-using AutoMapper;
+﻿using AutoMapper;
 using ECommerceSkinet.Core.DTO;
 using ECommerceSkinet.Core.Interfaces;
 using ECommerceSkinet.WebAPI.Errors;
@@ -7,6 +6,7 @@ using ECommerceSkinet.WebAPI.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using ECommerceSkinet.Core.Entities.Identity;
 
 namespace ECommerceSkinet.WebAPI.Controllers.v1
 {

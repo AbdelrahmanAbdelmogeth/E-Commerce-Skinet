@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ECommerceSkinet.Core.Identity
+namespace ECommerceSkinet.Core.Entities.Identity
 {
     public class Address
     {

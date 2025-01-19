@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using ECommerceSkinet.Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;
 using ECommerceSkinet.Infrastructure.Identity;
-using ECommerceSkinet.Core.Identity;
+using ECommerceSkinet.Core.Entities.Identity;
 
 namespace ECommerceSkinet
 {

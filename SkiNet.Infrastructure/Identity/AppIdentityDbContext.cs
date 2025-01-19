@@ -1,4 +1,4 @@
-﻿using ECommerceSkinet.Core.Identity;
+﻿using ECommerceSkinet.Core.Entities.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 

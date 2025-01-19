@@ -1,5 +1,5 @@
-﻿using ECommerceSkinet.Core.Identity;
-using ECommerceSkinet.Infrastructure.Identity;
+﻿using ECommerceSkinet.Infrastructure.Identity;
+using ECommerceSkinet.Core.Entities.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
