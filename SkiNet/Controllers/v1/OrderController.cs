@@ -35,7 +35,7 @@ namespace Controllers.v1
                 return BadRequest(new ApiResponse(404, "User email not found"));
             }
             var address = mapper.Map<AddressDto, Address>(orderDto.ShipToAddress);
-            var order = await orderService.CreateOrderAsync(email, orderDto.DeliveryMethodId, orderDto.BasketId, orderDto.PaymentItemId, address);
+            var order = await orderService.CreateOrderAsync(email, orderDto.DeliveryMethodId, orderDto.BasketId, orderDto.PaymentIntentId, address);
             if (order == null)
             {
                 return BadRequest(new ApiResponse(400, "Problem creating order"));

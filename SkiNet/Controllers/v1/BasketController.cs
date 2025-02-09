@@ -25,7 +25,8 @@ namespace Controllers.v1
         public async Task<ActionResult<CustomerBasket>> GetBasketById(string id)
         {
             CustomerBasket basket = await _basketRepository.GetBasketAsync(id);
-            return Ok(basket ?? new CustomerBasket { Id = id });
+            //return Ok(basket ?? new CustomerBasket { Id = id });
+            return Ok(basket ?? new CustomerBasket(id));
         }
 
         [HttpPost]

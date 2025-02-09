@@ -10,7 +10,7 @@ namespace ECommerceSkinet.Core.DTO
     {
         public string BasketId { get; set; }
         public int DeliveryMethodId { get; set; }
-        public string PaymentItemId { get; set; }
+        public string? PaymentIntentId { get; set; }
         public AddressDto ShipToAddress { get; set; }
     }
 }

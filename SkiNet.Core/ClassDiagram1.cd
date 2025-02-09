@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ECommerceSkinet.Core.Entities.BaseEntity" Collapsed="true">
+    <Position X="25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\BaseEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ECommerceSkinet.Core.Entities.BasketItem" Collapsed="true">
+    <Position X="35" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAQAQAAAAAAAAAAAAAAAAAAAAAQAAgAAJAAA=</HashCode>
+      <FileName>Entities\BasketItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ECommerceSkinet.Core.Entities.CustomerBasket" Collapsed="true">
+    <Position X="36.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\CustomerBasket.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ECommerceSkinet.Core.Entities.Product" Collapsed="true">
+    <Position X="30.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAQAQAwAAAAAABAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Product.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ECommerceSkinet.Core.Entities.ProductBrand" Collapsed="true">
+    <Position X="21.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\ProductBrand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ECommerceSkinet.Core.Entities.ProductType" Collapsed="true">
+    <Position X="24" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\ProductType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ECommerceSkinet.Core.Entities.Identity.Address">
+    <Position X="31.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAAAAAAAAAIIAAEAAIAAAIAAAAAAAIABAAAAAg=</HashCode>
+      <FileName>Entities\Identity\Address.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ECommerceSkinet.Core.Entities.Identity.AppRole" Collapsed="true">
+    <Position X="36.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Identity\AppRole.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ECommerceSkinet.Core.Entities.Identity.AppUser" Collapsed="true">
+    <Position X="33.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAQAAAEAAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Identity\AppUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ECommerceSkinet.Core.Entities.OrderAggregate.Address">
+    <Position X="33.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAIIAAAAAAAAAIAAAAAAAIABAAAAAg=</HashCode>
+      <FileName>Entities\OrderAggregate\Address.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ECommerceSkinet.Core.Entities.OrderAggregate.DeliveryMethod" Collapsed="true">
+    <Position X="26.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAgAAAAAAAAIAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\OrderAggregate\DeliveryMethod.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ECommerceSkinet.Core.Entities.OrderAggregate.Order">
+    <Position X="28.25" Y="5.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>CAAABAAEAAUEAAAAAAAAAAAAAEAAAAQAAAAgAAAAAAA=</HashCode>
+      <FileName>Entities\OrderAggregate\Order.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ECommerceSkinet.Core.Entities.OrderAggregate.OrderItem" Collapsed="true">
+    <Position X="19.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAIAAAAgAAAAAA=</HashCode>
+      <FileName>Entities\OrderAggregate\OrderItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ECommerceSkinet.Core.Entities.OrderAggregate.ProductItemOrdered" Collapsed="true">
+    <Position X="33.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Entities\OrderAggregate\ProductItemOrdered.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

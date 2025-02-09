@@ -14,13 +14,14 @@ namespace ECommerceSkinet.Core.Entities.OrderAggregate
         }
 
         public Order(IReadOnlyCollection<OrderItem> orderItems, string buyerEmail, Address shipToAddress,
-            DeliveryMethod deliveryMethod, decimal subtotal)
+            DeliveryMethod deliveryMethod, decimal subtotal, string paymentIntentId)
         {
             BuyerEmail = buyerEmail;
             ShipToAddress = shipToAddress;
             DeliveryMethod = deliveryMethod;
             OrderItems = orderItems;
             Subtotal = subtotal;
+            PaymentIntentId = paymentIntentId;
         }
 
         public string BuyerEmail { get; set; }
@@ -30,7 +31,7 @@ namespace ECommerceSkinet.Core.Entities.OrderAggregate
         public IReadOnlyCollection<OrderItem> OrderItems { get; set; }
         public decimal Subtotal { get; set; }
         public OrderStatus Status { get; set; } = OrderStatus.Pending;
-        public string PaymentItemId { get; set; } = string.Empty;
+        public string PaymentIntentId { get; set; } = string.Empty;
         public decimal GetTotal()
         {
             return Subtotal + DeliveryMethod.Price;

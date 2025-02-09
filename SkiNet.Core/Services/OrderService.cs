@@ -15,13 +15,16 @@ namespace ECommerceSkinet.Core.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IBasketRepository _basketRepository;
+        private readonly IPaymentService _paymentService;
 
         public OrderService(IUnitOfWork unitOfWork,
-            IBasketRepository basketRepository
+            IBasketRepository basketRepository,
+            IPaymentService paymentService
             )
         {
             _unitOfWork = unitOfWork;
             _basketRepository = basketRepository;
+            _paymentService = paymentService;
         }
 
 
@@ -52,9 +55,19 @@ namespace ECommerceSkinet.Core.Services
 
             // calc subtotal
             var subtotal = items.Sum(item => item.Price * item.Quantity);
-            
+
+            // check if order exists
+            var spec = new OrderByPaymentIntentIdWithItemsSpecification(basket.PaymentIntentId);
+            var existingOrder = await _unitOfWork.Repository<Order>().GetEntityWithSpec(spec);
+            if (existingOrder != null)
+            {
+                _unitOfWork.Repository<Order>().Delete(existingOrder);
+                await _paymentService.CreateOrUpdatePaymentIntent(basket.PaymentIntentId);
+                await _unitOfWork.Complete();
+            }
+
             //create order
-            var order = new Order(items, buyerEmail, shippingAddress, deliveryMethod, subtotal);
+            var order = new Order(items, buyerEmail, shippingAddress, deliveryMethod, subtotal, basket.PaymentIntentId);
             _unitOfWork.Repository<Order>().Add(order);
 
             // save to db
@@ -62,8 +75,8 @@ namespace ECommerceSkinet.Core.Services
 
             if (result <= 0) return null;
 
-            // delete basket
-            await _basketRepository.DeleteBasketAsync(basketId);
+            // delete basket (this will go somewhere else)
+            //await _basketRepository.DeleteBasketAsync(basketId);
 
             // return order
             return order;

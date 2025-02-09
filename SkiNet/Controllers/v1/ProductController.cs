@@ -15,14 +15,14 @@ namespace ECommerceSkinet.WebAPI.Controllers.v1
 {
     [AllowAnonymous]
     [ApiVersion("1.0")]
-    public class ProductController : CustomControllerBase
+    public class ProductsController : CustomControllerBase
     {
         private readonly IGenericRepository<Product> _productsRepo;
         private readonly IGenericRepository<ProductBrand> _productBrandRepo;
         private readonly IGenericRepository<ProductType> _productTypeRepo;
         private readonly IMapper _mapper;
 
-        public ProductController(IGenericRepository<Product> productsRepo,
+        public ProductsController(IGenericRepository<Product> productsRepo,
             IGenericRepository<ProductBrand> productBrandRepo,
             IGenericRepository<ProductType> productTypeRepo,
             IMapper mapper) {
@@ -79,6 +79,5 @@ namespace ECommerceSkinet.WebAPI.Controllers.v1
         {
             return Ok(await _productTypeRepo.ListAllAsync());
         }
-
     }
 }
