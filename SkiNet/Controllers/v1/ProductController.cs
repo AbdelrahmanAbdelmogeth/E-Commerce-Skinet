@@ -32,6 +32,7 @@ namespace ECommerceSkinet.WebAPI.Controllers.v1
             _mapper = mapper;
         }
 
+        [Cached(600)]
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
@@ -46,6 +47,7 @@ namespace ECommerceSkinet.WebAPI.Controllers.v1
                 return new ObjectResult(new ApiResponse(404));
         }
 
+        [Cached(600)]
         [HttpGet]
         public async Task<ActionResult<Pagination<ProductToReturnDto>>> GetProducts(
             [FromQuery] ProductSpecParams productParams) 
@@ -66,14 +68,14 @@ namespace ECommerceSkinet.WebAPI.Controllers.v1
                 return new ObjectResult(new ApiResponse(404));
         }
 
-        
+        [Cached(600)]
         [HttpGet("brands")]
         public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProductBrands()
         {
             return Ok(await _productBrandRepo.ListAllAsync());
         }
 
-         
+        [Cached(600)]
         [HttpGet("types")]
         public async Task<ActionResult<IReadOnlyList<ProductType>>> GetProductTypes()
         {
