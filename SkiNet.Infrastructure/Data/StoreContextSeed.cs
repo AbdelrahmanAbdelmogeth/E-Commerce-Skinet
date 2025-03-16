@@ -4,16 +4,31 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.Text.Json;
 using ECommerceSkinet.Core.Entities.OrderAggregate;
+using ECommerceSkinet.Core.Entities.Identity;
+using Microsoft.AspNetCore.Identity;
 
 namespace ECommerceSkinet.Infrastructure.Data
 {
     public class StoreContextSeed
     {
-        public static async Task SeedAsync(ApplicationDbContext context, ILoggerFactory loggerFactory)
+        public static async Task SeedAsync(ApplicationDbContext context, 
+            ILoggerFactory loggerFactory,
+            UserManager<AppUser> userManager)
         {
             try
             {
-                if(!context.ProductBrands.Any())
+                if(!userManager.Users.Any(x => x.Email == "admin@test.com"))
+                {
+                    var user = new AppUser
+                    {
+                        UserName = "admin@test.com",
+                        Email = "admin@test.com"
+                    };
+                    await userManager.CreateAsync(user, "Pa$$w0rd");
+                    await userManager.AddToRoleAsync(user, "Admin");
+                }
+
+                if (!context.ProductBrands.Any())
                 {
                     var basePath = AppDomain.CurrentDomain.BaseDirectory;
                     var relativePath = @"..\..\..\..\SkiNetAPI.Infrastructure\Data\SeedData\brands.json";

@@ -120,6 +120,15 @@ namespace ECommerceSkinet.Core.Services
             return order;
         }
 
-       
+        public async Task<string> RefundPayment(string paymentIntentId)
+        {
+            var refundOptions = new RefundCreateOptions
+            {
+                PaymentIntent = paymentIntentId
+            };
+            var refundService = new RefundService();
+            var result = await refundService.CreateAsync(refundOptions);
+            return result.Status;
+        }
     }
 }

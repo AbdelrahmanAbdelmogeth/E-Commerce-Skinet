@@ -78,6 +78,9 @@ namespace ECommerceSkinet.WebAPI
             app.UseAuthentication();
             app.UseAuthorization();
 
+            // Register the custom middleware here
+            app.UseMiddleware<CustomAuthorizationMiddleware>();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

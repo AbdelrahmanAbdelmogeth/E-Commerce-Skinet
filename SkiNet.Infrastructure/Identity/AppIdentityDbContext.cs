@@ -14,6 +14,8 @@ namespace ECommerceSkinet.Infrastructure.Identity
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            builder.ApplyConfiguration(new ECommerceSkinet.Infrastructure.Data.Config.RoleConfiguration());
+
         }
     }
 }

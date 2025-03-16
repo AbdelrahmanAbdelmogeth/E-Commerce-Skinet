@@ -13,5 +13,6 @@ namespace ECommerceSkinet.Core.Interfaces
         Task<CustomerBasket> CreateOrUpdatePaymentIntent(string basketId);
         Task<Order> UpdateOrderPaymentSucceeded(string paymentIntentId);
         Task<Order> UpdateOrderPaymentFailed(string paymentIntentId);
+        Task<string> RefundPayment(string paymentIntentId); 
     }
 }

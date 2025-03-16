@@ -22,6 +22,15 @@ namespace ECommerceSkinet.Core.Helpers
                 .ForMember(d => d.DeliveryMethod, o => o.MapFrom(s => s.DeliveryMethod.ShortName))
                 .ForMember(d => d.DeliveryTime, o => o.MapFrom(s => s.DeliveryMethod.DeliveryTime))
                 .ForMember(d => d.ShippingPrice, o => o.MapFrom(s => s.DeliveryMethod.Price));
+            // New mappings for Order
+            CreateMap<Order, OrderBaseToReturnDto>()
+                .ForMember(d => d.DeliveryMethod, o => o.MapFrom(s => s.DeliveryMethod.ShortName))
+                .ForMember(d => d.DeliveryTime, o => o.MapFrom(s => s.DeliveryMethod.DeliveryTime))
+                .ForMember(d => d.ShippingPrice, o => o.MapFrom(s => s.DeliveryMethod.Price))
+                .ForMember(d => d.Status, o => o.MapFrom(s => s.Status.ToString())); // Map status to string
+            CreateMap<Order, OrderAdminToReturnDto>()
+                .IncludeBase<Order, OrderBaseToReturnDto>() // Inherit mappings from OrderBaseDto
+                .ForMember(d => d.PaymentIntentId, o => o.MapFrom(s => s.PaymentIntentId)); // Map admin-only property
             CreateMap<OrderItem, OrderItemDto>()
                 .ForMember(d => d.ProductId, o => o.MapFrom(s => s.ItemOrdered.ProductItemId))
                 .ForMember(d => d.ProductName, o => o.MapFrom(s => s.ItemOrdered.ProductName))

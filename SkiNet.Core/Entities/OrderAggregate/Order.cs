@@ -1,4 +1,5 @@
-﻿using EnumsCommerceSkinet.Core.Entities.OrderAggregate;
+﻿using ECommerceSkinet.Core.Interfaces;
+using EnumsCommerceSkinet.Core.Entities.OrderAggregate;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -11,9 +11,13 @@ namespace EnumsCommerceSkinet.Core.Entities.OrderAggregate
     {
         [EnumMember(Value = "Pending")]
         Pending,
-        [EnumMember(Value = "Payment Received")]
+        [EnumMember(Value = "PaymentReceived")]
         PaymentReceived,
-        [EnumMember(Value = "Payment Dailed")]
-        PaymentFailed
+        [EnumMember(Value = "PaymentDailed")]
+        PaymentFailed,
+        [EnumMember(Value = "PaymentMismatch")]
+        PaymentMismatch,
+        [EnumMember(Value = "PaymentRefunded")]
+        PaymentRefunded,
     }
 }

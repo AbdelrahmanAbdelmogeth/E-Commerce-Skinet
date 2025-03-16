@@ -3,6 +3,9 @@ using ECommerceSkinet.Core.Entities;
 using ECommerceSkinet.Core.Interfaces;
 using ECommerceSkinet.Core.Specifications;
 using Microsoft.EntityFrameworkCore;
+using ECommerceSkinet.Core.DTO;
+using ECommerceSkinet.Core.Helpers;
+using Microsoft.AspNetCore.Mvc;
 
 
 namespace ECommerceSkinet.Infrastructure.Data
@@ -30,15 +33,15 @@ namespace ECommerceSkinet.Infrastructure.Data
         {
             return await ApplySpecification(spec).FirstOrDefaultAsync();
         }
- 
+
         public async Task<IReadOnlyList<T>> ListAsync(ISpecification<T> spec)
         {
             return await ApplySpecification(spec).ToListAsync();
         }
 
-        private IQueryable<T> ApplySpecification(ISpecification<T> spec) 
+        private IQueryable<T> ApplySpecification(ISpecification<T> spec)
         {
-            return SpecificationEvaluator<T>.GetQuery(_context.Set<T>().AsQueryable(), spec);    
+            return SpecificationEvaluator<T>.GetQuery(_context.Set<T>().AsQueryable(), spec);
         }
 
         public async Task<int> CountAsync(ISpecification<T> spec)

@@ -8,18 +8,8 @@ using System.Threading.Tasks;
 
 namespace ECommerceSkinet.Core.DTO
 {
-    public class OrderToReturnDto
+    public class OrderToReturnDto : OrderBaseToReturnDto
     {
-        public int Id { get; set; }
-        public string BuyerEmail { get; set; }
-        public DateTimeOffset OrderDate { get; set; } = DateTimeOffset.Now;
-        public Address ShipToAddress { get; set; }
-        public string DeliveryMethod { get; set; }
-        public string DeliveryTime { get; set; }
-        public decimal ShippingPrice { get; set; }
-        public IReadOnlyCollection<OrderItemDto> OrderItems { get; set; }
-        public decimal Subtotal { get; set; }
-        public decimal Total { get; set; }
-        public string Status { get; set; }
+        
     }
 }
